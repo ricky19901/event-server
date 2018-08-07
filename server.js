@@ -26,15 +26,15 @@ app.use(function (req, res, next) {
 
 app.use(compression({ filter: shouldCompress }));
 app.use(bodyParser.json({ limit: '10mb' }));                        // Support JSON-encoded bodies
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })); // Support URL-encoded bodies
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));  // Support URL-encoded bodies
 
 function shouldCompress(req, res) {
+  // Don't compress responses with this request header
   if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
     return false
   }
 
-  // fallback to standard filter function
+  // Fallback to standard filter function
   return compression.filter(req, res)
 }
 
@@ -115,8 +115,8 @@ app.post("/login",function (req, res) {
 
 const port = process.argv[2] ? process.argv[2] : 8080;
 var server = app.listen(port, function () {
-  const host = server.address().address
-  const port = server.address().port
+  const host = server.address().address;
+  const port = server.address().port;
 
   console.log(`I'm listening in port: ${port}`);
 });
