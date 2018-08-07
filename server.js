@@ -3,8 +3,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 
-// Services
+// Controllers
 var eventController = require("./controllers/event.controller");
+var loginController = require("./controllers/login.controller");
 
 /* ---------- SERVER CONFIGURATION ---------- */
 
@@ -46,7 +47,7 @@ app.get('/', function (req, res) {
 // CREATE EVENT
 app.post("/event",function (req, res) {
   var event = JSON.parse(req.body.event);
-  eventController.createEvent(event, req.body.username, req.body.password).then((result) => {
+  eventController.createEvent(event, req.body.token).then((result) => {
     console.log(result);
     res.statusCode = 200;
     res.send(result);
@@ -59,7 +60,7 @@ app.post("/event",function (req, res) {
 
 // READ EVENT
 app.get('/event/:id', function (req, res) {
-  eventController.getEventById(req.params.id, req.params.username, req.params.password).then((result) => {
+  eventController.getEventById(req.params.id, req.params.token).then((result) => {
     console.log(result);
     res.statusCode = 200;
     res.send(result);
@@ -73,7 +74,7 @@ app.get('/event/:id', function (req, res) {
 // UPDATE EVENT
 app.put("/event",function (req, res) {
   var event = JSON.parse(req.body.event);
-  eventController.updateEvent(event, req.body.username, req.body.password).then((result) => {
+  eventController.updateEvent(event, req.body.token).then((result) => {
     console.log(result);
     res.statusCode = 200;
     res.send(result);
@@ -86,7 +87,7 @@ app.put("/event",function (req, res) {
 
 // DELETE EVENT
 app.delete('/event', function (req, res) {
-  eventController.getEventById(req.body.id, req.body.username, req.body.password).then((result) => {
+  eventController.deleteEvent(req.body.id, req.body.token).then((result) => {
     console.log(result);
     res.statusCode = 200;
     res.send(result);
@@ -97,6 +98,18 @@ app.delete('/event', function (req, res) {
   });
 });
 
+// LOGIN
+app.post("/login",function (req, res) {
+  loginController.login(req.body.username, req.body.password).then((result) => {
+    console.log(result);
+    res.statusCode = 200;
+    res.send(result);
+  }).catch((error) => {
+    console.log(error);
+    res.statusCode = 500;
+    res.send(error);
+  });
+});
 
 /* ---------- SERVER INITIALIZATION ---------- */
 
