@@ -1,6 +1,9 @@
 var eventService = require("./../services/event.service");
 var loginService = require("./../services/login.service")
 
+// Controllers handle Use Case Flows on the server project.
+// Not too much of that here, considering that this is a simple CRUD.
+
 exports.createEvent = (event, token) => {
     return authenticatedRequest(token, eventService.createEvent(event));
 }

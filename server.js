@@ -7,6 +7,8 @@ var compression = require('compression');
 var eventController = require("./controllers/event.controller");
 var loginController = require("./controllers/login.controller");
 
+// The SERVER.JS works as the Dispatcher for the API project. It unpacks and packs requests and pass it on to the controller or back to the clients.
+
 /* ---------- SERVER CONFIGURATION ---------- */
 
 //Initialize the App
