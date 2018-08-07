@@ -1,65 +1,27 @@
 var eventService = require("./../services/event.service");
 var loginService = require("./../services/login.service")
 
-exports.createEvent = (event, username, password) => {
-    return new Promise(function (resolve, reject) {
-        loginService.login(username, password)
-            .then(() => {
-                eventService.createEvent(event)
-                    .then((result) => {
-                        resolve(result);
-                    })
-                    .catch((error) => {
-                        reject(error);
-                    })
-            })
-            .catch(() => {
-                reject(error);
-            })
-    });
+exports.createEvent = (event, token) => {
+    return authenticatedRequest(token, eventService.createEvent(event));
 }
 
-exports.getEventById = (id, username, password) => {
-    return new Promise(function (resolve, reject) {
-        loginService.login(username, password)
-            .then(() => {
-                eventService.getEventById(id)
-                    .then((result) => {
-                        resolve(result);
-                    })
-                    .catch((error) => {
-                        reject(error);
-                    })
-            })
-            .catch(() => {
-                reject(error);
-            })
-    });
+exports.getEventById = (id, token) => {
+    return authenticatedRequest(token, eventService.getEventById(id));
 }
 
-exports.updateEvent = (event, username, password) => {
-    return new Promise(function (resolve, reject) {
-        loginService.login(username, password)
-            .then(() => {
-                eventService.updateEvent(event)
-                    .then((result) => {
-                        resolve(result);
-                    })
-                    .catch((error) => {
-                        reject(error);
-                    })
-            })
-            .catch(() => {
-                reject(error);
-            })
-    });
+exports.updateEvent = (event, token) => {
+    return authenticatedRequest(token, eventService.updateEvent(event));
 }
 
-exports.deleteEvent = (id, username, password) => {
+exports.deleteEvent = (id, token) => {
+    return authenticatedRequest(token, eventService.deleteEvent(id));
+}
+
+authenticatedRequest = (token, requestPromise) => {
     return new Promise(function (resolve, reject) {
-        loginService.login(username, password)
+        loginService.tokenLogin(token)
             .then(() => {
-                eventService.deleteEvent(id)
+                requestPromise
                     .then((result) => {
                         resolve(result);
                     })
@@ -69,6 +31,8 @@ exports.deleteEvent = (id, username, password) => {
             })
             .catch(() => {
                 reject(error);
-            })
+            }).finally(() => {
+                loginService.logout();
+            });
     });
 }

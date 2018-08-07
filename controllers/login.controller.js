@@ -7,3 +7,7 @@ exports.login = (username, password) => {
 exports.logout = () => {
     return loginService.logout();
 }
+
+exports.tokenLogin = (token) => {
+    return loginService.verifyToken(token);
+}

@@ -20,3 +20,7 @@ exports.login = (username, password) => {
 exports.logout = () => {
     return getAuth().signOut();
 }
+
+exports.tokenLogin = (token) => {
+    return getAuth().signInWithCustomToken(token);
+}

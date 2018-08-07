@@ -7,3 +7,7 @@ exports.login = (username, password) => {
 exports.logout = () => {
     return loginLocator.logout();
 }
+
+exports.tokenLogin = (token) => {
+    return loginLocator.tokenLogin(token);
+}
