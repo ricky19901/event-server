@@ -36,6 +36,10 @@ Locators are in charge of obtaining and adapting data into the entities that the
 ### Utils
 Normally classes full of static methods that can be useful throughout the whole project. While this case did not need a utils folder to hold any of these functionalities, it is a useful thing to have in a project. Optimally, if the utils become useful to other projects, it is recommended to create a module and set it up within NPM as a package for others to use on future projects.
 
+## Firebase Integration
+
+This API interacts with a firebase project that holds all the data and manages authentication and security. As such, it will require a user and password for it to properly get access to data within that database.
+
 ## Aknowledgements
 
 Hope it helps you out.
