@@ -1,0 +1,14 @@
+{
+    "name": "server",
+    "version": "0.0.1",
+    "description": "Basic express server for a demo API",
+    "main": "server.js",
+    "author": "Andrés Vidal",
+    "license": "ISC",
+    "dependencies": {
+        "compression": "^1.7.3",
+        "express": "^4.16.3",
+        "firebase": "^5.3.1",
+        "request": "^2.87.0"
+    }
+}

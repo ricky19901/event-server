@@ -1,0 +1,8 @@
+{
+    "apiKey": "AIzaSyC7VMYtqkQ9aMDuFvWlbLYZlTmxdH-Uwvw",
+    "authDomain": "event-demo-server.firebaseapp.com",
+    "databaseURL": "https://event-demo-server.firebaseio.com",
+    "projectId": "event-demo-server",
+    "storageBucket": "event-demo-server.appspot.com",
+    "messagingSenderId": "200002544282"
+}
