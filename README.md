@@ -10,11 +10,11 @@ Make sure you have NodeJS installed on your machine.
 
 After downloading the repo, access its root folder (the folder where server.js is at) and run the following command:
 ```
-npm i
+npm install
 ```
 Once all dependencies have insalled, you can start the server using the following command:
 ```
-npm server
+npm start
 ```
 This will launch the server and keep the terminal open for logging. 
 And that's it! The API is up and running.
